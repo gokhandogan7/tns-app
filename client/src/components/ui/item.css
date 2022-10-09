@@ -1,0 +1,31 @@
+.itemContainer {
+    overflow: hidden;
+    background-color: #666;
+    margin: 15px;
+}
+
+.title {
+    display: block;
+    color: #efdfdf;
+    text-align: center;
+    text-decoration: none;
+    padding: 12px;
+    font-size: 22px;
+}
+.description {
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    padding: 20px;
+    font-size: 16px;
+}
+.content{
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    text-decoration: none;
+    padding: 20px;
+    font-size: 12px;
+}
+
