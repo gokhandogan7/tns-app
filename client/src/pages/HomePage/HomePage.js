@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unescaped-entities */
+/* eslint-disable react/react-in-jsx-scope */
 import { services } from "../../services";
 import { useApi } from "../../hooks/useApi";
 import "./home.css";

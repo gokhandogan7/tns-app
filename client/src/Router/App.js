@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/react-in-jsx-scope */
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { DetailPage, HomePage } from "../pages";
