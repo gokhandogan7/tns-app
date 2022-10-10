@@ -3,10 +3,9 @@ import { useApi } from "../../hooks/useApi";
 import "./home.css";
 
 export const HomePage = () => {
-  const {state, errorMessage} = useApi(services.getArticles, [], false)
-  console.log(state, errorMessage)
-
-
+  const {state} = useApi(services.getArticles, [])
+  
+  
   return (
     <div className="homePageWrapper">
       <div className="contentContainer">

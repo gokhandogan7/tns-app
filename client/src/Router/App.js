@@ -5,9 +5,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import ErrorPage from "../components/ui/errorPage";
 
 function ErrorFallback({ error, resetErrorBoundary }) {
-  return (
-    <ErrorPage error={error} reset={resetErrorBoundary}/>
-  );
+  return <ErrorPage error={error} reset={resetErrorBoundary} />;
 }
 
 function App() {

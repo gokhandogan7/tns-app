@@ -7,7 +7,7 @@ export const getArticles = async () => {
   if (response.ok) {
     return response.json();
   }
-  const message = errorMapping[response.status] ?? errorMapping.default;
+  const message = errorMapping[response?.status] ?? errorMapping.default;
   throw new Error(message);
 };
 

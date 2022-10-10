@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useErrorHandler } from "react-error-boundary";
 
-export const useApi = (callBack, initial, handleInErrorBoundry=true) => {
+export const useApi = (callBack, initial) => {
   
   const [state, setState] = useState(initial);
   const handleError = useErrorHandler();
@@ -11,9 +11,7 @@ export const useApi = (callBack, initial, handleInErrorBoundry=true) => {
       const res = await callBack();
       setState(res);
     } catch (error) {
-      if (handleInErrorBoundry) {
         handleError(error);
-      }
     }
   };
 
