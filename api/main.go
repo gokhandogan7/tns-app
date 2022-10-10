@@ -39,10 +39,10 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 }
 
 func errorHandler(w http.ResponseWriter, r *http.Request, status int) {
+
 	enableCors(&w)
-	w.WriteHeader(status)
 	if status == http.StatusNotFound {
-		fmt.Fprint(w, "Status 404 Page not Found")
+		http.NotFound(w, r)
 	}
 }
 
@@ -55,12 +55,18 @@ func handleRequests() {
 
 func main() {
 	Articles = []Article{
-		Article{Title: "Hello", Desc: "Article Description", Content: "Article Content"},
+		Article{Title: "Hello", Desc: "Articlcription", Content: "Article Content"},
 		Article{Title: "Hello 2", Desc: "Article Description", Content: "Article Content"},
-		Article{Title: "Hello 3", Desc: "Article Description", Content: "Article Content"},
-		Article{Title: "Hello 4", Desc: "Article Description", Content: "Article Content"},
-		Article{Title: "Hello 5", Desc: "Article Description", Content: "Article Content"},
-		Article{Title: "Hello 6", Desc: "Article Description", Content: "Article Content"},
+		Article{Title: "Hello 3", Desc: "icription", Content: "Article Content"},
+		Article{Title: "Hello 4", Desc: "cle Description", Content: "Article Content"},
+		Article{Title: "Hello 5", Desc: "ticleescription", Content: "Article Content"},
+		Article{Title: "strasbourg", Desc: "Article Description", Content: "Article Content"},
+		Article{Title: "strdurg", Desc: "Article Description", Content: "Article Content"},
+		Article{Title: "sfdfg", Desc: "Article Description", Content: "Article Content"},
+		Article{Title: "s", Desc: "ticlcription", Content: "Article Content"},
+		Article{Title: "machine", Desc: "Article Description", Content: "Article Content"},
+		Article{Title: "macht", Desc: "Article Description", Content: "Article Content"},
+		Article{Title: "He", Desc: "rticle Description", Content: "Article Content"},
 	}
 
 	handleRequests()
