@@ -13,6 +13,10 @@ type Article struct {
 	Content string `json:"content"`
 }
 
+type error interface {
+	Error() string
+}
+
 var Articles []Article
 
 func enableCors(w *http.ResponseWriter) {
