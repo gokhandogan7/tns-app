@@ -2,20 +2,9 @@
 import React from "react";
 import "./item.css";
 
-const Item = ({ items, search }) => {
+const Item = ({ items }) => {
   return items
-    .filter((item) => {
-      if (search === "") {
-        return item;
-      } else if (
-        item?.Title?.replaceAll(" ", "")
-          .toLowerCase()
-          .includes(search?.toLowerCase()) ||
-        item?.desc?.toLowerCase().includes(search?.toLowerCase())
-      ) {
-        return item;
-      }
-    })
+    
     .map((item, index) => (
       <div className="container" key={index}>
         <div className="itemContainer">
