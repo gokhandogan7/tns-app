@@ -1,45 +1,29 @@
 package main
 
 import (
+	"api/config"
+	"api/entities"
+	"api/models"
 	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
 	"strings"
+
+	_ "github.com/go-sql-driver/mysql"
 )
-
-type Article struct {
-	Title   string `json:"Title"`
-	Desc    string `json:"desc"`
-	Content string `json:"content"`
-}
-
-var Articles = []Article{
-	Article{Title: "Hello", Desc: "Articlcription", Content: "Article Content"},
-	Article{Title: "Hello 2", Desc: "Article Description", Content: "Article Content"},
-	Article{Title: "Hello 3", Desc: "icription", Content: "Article Content"},
-	Article{Title: "Hello 4", Desc: "cle Description", Content: "Article Content"},
-	Article{Title: "Hello 5", Desc: "ticleescription", Content: "Article Content"},
-	Article{Title: "strasbourg", Desc: "Article Description", Content: "Article Content"},
-	Article{Title: "strdurg", Desc: "Article Description", Content: "Article Content"},
-	Article{Title: "sfdfg", Desc: "Article Description", Content: "Article Content"},
-	Article{Title: "s", Desc: "ticlcription", Content: "Article Content"},
-	Article{Title: "machine", Desc: "Article Description", Content: "Article Content"},
-	Article{Title: "macht", Desc: "Article Description", Content: "Article Content"},
-	Article{Title: "He", Desc: "rticle Description", Content: "Article Content"},
-}
 
 func enableCors(w *http.ResponseWriter) {
 	(*w).Header().Set("Access-Control-Allow-Origin", "*")
 }
 
-var searchedArticles []Article
+var searchedArticles []entities.Article
 
 func returnAllArticles(w http.ResponseWriter, r *http.Request) {
-	searchedArticles := []Article{}
+	searchedArticles := []entities.Article{}
 	enableCors(&w)
 	searchKey := r.URL.Query().Get("search")
-	Articles := Articles
+	Articles := entities.Articles
 	for _, article := range Articles {
 		if isSearched(article, searchKey) {
 
@@ -56,7 +40,7 @@ func returnAllArticles(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func isSearched(article Article, searchKey string) bool {
+func isSearched(article entities.Article, searchKey string) bool {
 
 	a := strings.ReplaceAll(article.Title, " ", "")
 	s := strings.ReplaceAll(searchKey, " ", "")
@@ -80,6 +64,7 @@ func errorHandler(w http.ResponseWriter, r *http.Request, status int) {
 }
 
 func handleRequests() {
+
 	http.HandleFunc("/", homePage)
 	http.HandleFunc("/articles", returnAllArticles)
 	log.Fatal(http.ListenAndServe(":8081", nil))
@@ -88,12 +73,36 @@ func handleRequests() {
 
 func main() {
 
-	fmt.Println("Searched:")
-	for _, u := range searchedArticles {
-		fmt.Println(u)
-	}
-
-	fmt.Println(Articles)
+	Article_CallFindAll()
 	handleRequests()
+
+}
+
+func Article_CallFindAll() {
+	db, err := config.GetMySQLDB()
+
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		articleModel := models.ArticleModel{
+			Db: db,
+		}
+		articles, err := articleModel.FindAll()
+		entities.Articles = append(entities.Articles, articles...)
+
+		if err != nil {
+			fmt.Println(err)
+		} else {
+			fmt.Println(articles)
+			fmt.Println("Articles List")
+			for _, article := range articles {
+				fmt.Println("Title", article.Title)
+				fmt.Println("Title", article.Desc)
+				fmt.Println("Title", article.Content)
+				fmt.Println("----------------------")
+			}
+
+		}
+	}
 
 }
