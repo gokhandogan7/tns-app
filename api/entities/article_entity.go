@@ -1,9 +1,10 @@
 package entities
 
 type Article struct {
+	Id      int64  `json:"Id"`
 	Title   string `json:"Title"`
 	Desc    string `json:"desc"`
-	Content string `json:"content"`
+	Context string `json:"content"`
 }
 
 var Articles = []Article{}
