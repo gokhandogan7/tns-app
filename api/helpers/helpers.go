@@ -17,3 +17,11 @@ func IsSearched(article entities.Article, searchKey string) bool {
 func EnableCors(w *http.ResponseWriter) {
 	(*w).Header().Set("Access-Control-Allow-Origin", "*")
 }
+
+func ErrorHandler(w http.ResponseWriter, r *http.Request, status int) {
+
+	EnableCors(&w)
+	if status == http.StatusNotFound {
+		http.NotFound(w, r)
+	}
+}

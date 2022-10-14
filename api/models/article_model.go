@@ -3,6 +3,7 @@ package models
 import (
 	"api/entities"
 	"database/sql"
+	"fmt"
 )
 
 type ArticleModel struct {
@@ -46,6 +47,7 @@ func (articleModel ArticleModel) Create(article *entities.Article) error {
 func (articleModel ArticleModel) Find(id int64) (entities.Article, error) {
 
 	rows, err := articleModel.Db.Query("SELECT * FROM `articles` where id=?", id)
+	fmt.Println("findkey", id)
 
 	if err != nil {
 		return entities.Article{}, err
@@ -56,13 +58,11 @@ func (articleModel ArticleModel) Find(id int64) (entities.Article, error) {
 			var title string
 			var desc string
 			var context string
-			err2 := rows.Scan(&id, &title, &desc, &context)
-			if err2 != nil {
-				return entities.Article{}, err2
-			} else {
-				article = entities.Article{Id: id, Title: title, Desc: desc, Context: context}
-
+			err := rows.Scan(&id, &title, &desc, &context)
+			if err != nil {
+				return entities.Article{}, err
 			}
+			article = entities.Article{Id: id, Title: title, Desc: desc, Context: context}
 		}
 		return article, nil
 	}
