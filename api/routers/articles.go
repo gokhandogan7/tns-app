@@ -1,8 +1,8 @@
 package router
 
 import (
-	"api/controllers"
 	"api/helpers"
+	"api/services"
 	"log"
 	"net/http"
 
@@ -23,11 +23,11 @@ func HandleRequests() {
 
 	myRouter := mux.NewRouter().StrictSlash(true)
 	myRouter.HandleFunc("/", homePage)
-	myRouter.HandleFunc("/articles", controllers.GetAllArticles).Methods(http.MethodGet)
-	myRouter.HandleFunc("/article/{id}", controllers.GetSingleArticle).Methods(http.MethodGet)
-	myRouter.HandleFunc("/article", controllers.CreateNewArticle).Methods(http.MethodPost)
-	myRouter.HandleFunc("/article/{id}", controllers.DeleteArticle).Methods(http.MethodDelete)
-	myRouter.HandleFunc("/article/{id}", controllers.UpdateArticle).Methods(http.MethodPut)
+	myRouter.HandleFunc("/articles", services.GetAllArticles).Methods(http.MethodGet)
+	myRouter.HandleFunc("/article/{id}", services.GetSingleArticle).Methods(http.MethodGet)
+	myRouter.HandleFunc("/article", services.CreateNewArticle).Methods(http.MethodPost)
+	myRouter.HandleFunc("/article/{id}", services.DeleteArticle).Methods(http.MethodDelete)
+	myRouter.HandleFunc("/article/{id}", services.UpdateArticle).Methods(http.MethodPut)
 
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
 	originsOk := handlers.AllowedOrigins([]string{"*"})

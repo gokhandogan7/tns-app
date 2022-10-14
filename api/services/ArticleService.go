@@ -1,10 +1,10 @@
-package controllers
+package services
 
 import (
 	"api/config"
 	"api/entities"
 	"api/helpers"
-	"api/models"
+	mysqloperations "api/mysql"
 	"encoding/json"
 	"fmt"
 	"net/http"
@@ -21,7 +21,7 @@ func GetAllArticles(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	} else {
-		articleModel := models.ArticleModel{
+		articleModel := mysqloperations.ArticleModel{
 			Db: db,
 		}
 
@@ -59,7 +59,7 @@ func GetSingleArticle(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	} else {
-		articleModel := models.ArticleModel{
+		articleModel := mysqloperations.ArticleModel{
 			Db: db,
 		}
 		emptyArticleList := []entities.Article{}
@@ -84,7 +84,7 @@ func CreateNewArticle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	articleModel := models.ArticleModel{
+	articleModel := mysqloperations.ArticleModel{
 		Db: db,
 	}
 	fmt.Println("", article2)
@@ -119,7 +119,7 @@ func UpdateArticle(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(">>>>>>0", err)
 	} else {
-		articleModel := models.ArticleModel{
+		articleModel := mysqloperations.ArticleModel{
 			Db: db,
 		}
 		article := entities.Article{
@@ -157,7 +157,7 @@ func DeleteArticle(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println(err)
 	} else {
-		articleModel := models.ArticleModel{
+		articleModel := mysqloperations.ArticleModel{
 			Db: db,
 		}
 		rows, err := articleModel.Delete(intId)
@@ -183,7 +183,7 @@ func RemoveArticle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	articleModel := models.ArticleModel{
+	articleModel := mysqloperations.ArticleModel{
 		Db: db,
 	}
 	rows, err := articleModel.Delete(article2.Id)

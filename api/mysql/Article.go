@@ -1,4 +1,4 @@
-package models
+package mysqloperations
 
 import (
 	"api/entities"
