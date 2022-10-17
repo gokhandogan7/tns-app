@@ -117,7 +117,7 @@ func UpdateArticle(w http.ResponseWriter, r *http.Request) {
 	err := json.NewDecoder(r.Body).Decode(&articleType)
 
 	if err != nil {
-		fmt.Println(">>>>>>0", err)
+		fmt.Println(err)
 	} else {
 		articleModel := mysqloperations.ArticleModel{
 			Db: db,
@@ -165,35 +165,9 @@ func DeleteArticle(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(err)
 		} else {
 			if rows > 0 {
-				fmt.Println("delete done")
 			}
 		}
 	}
 	defer db.Close()
 
-}
-
-func RemoveArticle(w http.ResponseWriter, r *http.Request) {
-	var article2 entities.Article
-	db, _ := config.GetMySQLDB()
-
-	err := json.NewDecoder(r.Body).Decode(&article2)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusBadRequest)
-		return
-	}
-
-	articleModel := mysqloperations.ArticleModel{
-		Db: db,
-	}
-	rows, err := articleModel.Delete(article2.Id)
-	if err != nil {
-		fmt.Println(">>>>>1", err)
-	} else {
-		if rows > 0 {
-			fmt.Println("delete done")
-		}
-	}
-
-	defer db.Close()
 }
