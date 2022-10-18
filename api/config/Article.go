@@ -25,7 +25,7 @@ func New(db *sql.DB) *Queries {
 
 func GetMySQLDB() (db *sql.DB, err error) {
 
-	confContent, err := ioutil.ReadFile("conf.yaml")
+	confContent, err := ioutil.ReadFile("conf.yml")
 	if err != nil {
 		panic(err)
 	}

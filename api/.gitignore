@@ -18,6 +18,7 @@
 .env.test.local
 .env.production.local
 .yaml
+.yml
 !*.yaml
 !*.yml
 
