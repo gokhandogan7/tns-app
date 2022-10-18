@@ -24,29 +24,30 @@ func GetAllArticles(w http.ResponseWriter, r *http.Request) {
 		articleModel := mysqloperations.ArticleModel{
 			Db: db,
 		}
-
+		emptyArticleList := []entities.Article{}
 		articles, err := articleModel.FindAll()
-		entities.Articles = append(entities.Articles, articles...)
+
+		emptyArticleList = append(emptyArticleList, articles...)
 
 		if err != nil {
 			fmt.Println(err)
 		}
-	}
 
-	searchedArticles := []entities.Article{}
-	searchKey := r.URL.Query().Get("search")
-	Articles := entities.Articles
-	for _, article := range Articles {
-		if helpers.IsSearched(article, searchKey) {
+		searchedArticles := []entities.Article{}
+		searchKey := r.URL.Query().Get("search")
+		Articles := emptyArticleList
+		for _, article := range Articles {
+			if helpers.IsSearched(article, searchKey) {
 
-			searchedArticles = append(searchedArticles, article)
+				searchedArticles = append(searchedArticles, article)
 
+			}
 		}
-	}
-	json.NewEncoder(w).Encode(searchedArticles)
-	if r.URL.Path != "/articles" {
-		helpers.ErrorHandler(w, r, http.StatusNotFound)
-		return
+		json.NewEncoder(w).Encode(searchedArticles)
+		if r.URL.Path != "/articles" {
+			helpers.ErrorHandler(w, r, http.StatusNotFound)
+			return
+		}
 	}
 
 }
