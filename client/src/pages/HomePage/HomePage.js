@@ -8,7 +8,7 @@ export const HomePage = () => {
   useApi(services.getArticles, []);
 
   return (
-    <div className="homePageWrapper">
+    <div data-cy="home-page" className="homePageWrapper">
       <div className="contentContainer">
         <h1 className="header">Welcome to T&S</h1>
         <p className="motto">Let's make it Possible!!!</p>

@@ -16,7 +16,7 @@ function ItemList() {
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
+    <div data-cy="detail-page" style={{ textAlign: "center" }}>
       <h1 style={{ textAlign: "center" }}>List of Data</h1>
       <SearchBox handleChange={handleChange} value={value} />
       <Item items={state} search={debouncedValue} />
