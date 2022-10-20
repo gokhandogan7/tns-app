@@ -10,12 +10,12 @@ export const HomePage = () => {
   return (
     <div data-cy="home-page" className="homePageWrapper">
       <div className="contentContainer">
-        <h1 className="header">Welcome to T&S</h1>
-        <p className="motto">Let's make it Possible!!!</p>
+        <h1 data-cy="header" className="header">Welcome to T&S</h1>
+        <p data-cy="motto" className="motto">Let's make it Possible!!!</p>
       </div>
 
       <div className="linkContainer">
-        <a className="link" href="/details">
+        <a data-cy="link" className="link" href="/details">
           Details
         </a>
       </div>
