@@ -11,9 +11,15 @@ import (
 func main() {
 
 	db, err := config.GetMySQLDB()
+	// if err != nil {
+	fmt.Println(db, err)
+	// defer db.Close()
+	// }
+
+	err = db.Ping()
 	if err != nil {
 		fmt.Println(err)
-		defer db.Close()
+
 	}
 	fmt.Println("success")
 

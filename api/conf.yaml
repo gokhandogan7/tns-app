@@ -1,4 +1,4 @@
 DB_USER: root
 DB_DRIVER: mysql
-DB_NAME: firstdatabase
-DB_PASS: 1231231234eBike
+DB_NAME: newdb
+DB_PASS: secret
