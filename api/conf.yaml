@@ -1,4 +1,5 @@
-MYSQL_USER: root
+MYSQL_USER: admin
+MYSQL_PASSWORD: secret
 MYSQL_DRIVER: mysql
 MYSQL_DATABASE: newdockerdb
 MYSQL_ROOT_PASSWORD: secret
