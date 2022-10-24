@@ -1,4 +1,6 @@
-DB_USER: root
-DB_DRIVER: mysql
-DB_NAME: newdb
-DB_PASS: secret
+MYSQL_USER: root
+MYSQL_DRIVER: mysql
+MYSQL_DATABASE: denemdb
+MYSQL_ROOT_PASSWORD: secret
+MYSQL_HOST: 127.0.0.1
+MYSQL_PORT: 3307

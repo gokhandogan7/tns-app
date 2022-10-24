@@ -1,28 +1,40 @@
 version: '3'
 services:
-  app:
-    container_name: full_app
-    build: .
+  api:
+    container_name: api
+    build: ./api
     ports: 
-      - 8080:8080 
+      - 8081:8081 
     restart: on-failure
     volumes:
       - api:/usr/src/app/
-    depends_on:
-      
-      - fullstack-mysql           # Uncomment this when using mysql.
+    depends_on:     
+      - fullstack-mysql     
+    networks:
+      - fullstack
+
+  client:
+    container_name: client
+    build: ./client
+    ports: 
+      - 3000:3000 
+    restart: on-failure
+
+    depends_on:     
+      - api     
     networks:
       - fullstack
   
   fullstack-mysql:
      image: mysql:latest
-     container_name: full_db_mysql
+     container_name: db_mysql
      ports: 
        - 3306:3306
      environment:
        - MYSQL_ROOT_HOST=127.0.0.1  
        - MYSQL_DATABASE=newdockerdb
        - MYSQL_ROOT_PASSWORD=secret
+       - MYSQL_HOST=mysql
      volumes:
        - database_mysql:/var/lib/mysql
      networks:
@@ -31,10 +43,9 @@ services:
 
 volumes:
   api:
- 
   database_mysql:                   
 
-# Networks to be created to facilitate communication between containers
+
 networks:
   fullstack:
     driver: bridge
