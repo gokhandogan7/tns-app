@@ -1,0 +1,119 @@
+definitions:
+  services.Article:
+    properties:
+      Id:
+        type: integer
+      Title:
+        type: string
+      context:
+        type: string
+      desc:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /article:
+    post:
+      consumes:
+      - application/json
+      description: Create a new article with the input paylod
+      parameters:
+      - description: Create article
+        in: body
+        name: article
+        required: true
+        schema:
+          $ref: '#/definitions/services.Article'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/services.Article'
+      summary: Create a new article
+      tags:
+      - articles
+  /article/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete an article with the input paylod
+      parameters:
+      - description: Delete article
+        in: body
+        name: article
+        required: true
+        schema:
+          $ref: '#/definitions/services.Article'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/services.Article'
+      summary: Delete an article
+      tags:
+      - articles
+    get:
+      consumes:
+      - application/json
+      description: Get single article with the input paylod
+      parameters:
+      - description: Update article
+        in: body
+        name: article
+        required: true
+        schema:
+          $ref: '#/definitions/services.Article'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/services.Article'
+      summary: Get Single Article
+      tags:
+      - articles
+    put:
+      consumes:
+      - application/json
+      description: Update an article with the input paylod
+      parameters:
+      - description: Update article
+        in: body
+        name: article
+        required: true
+        schema:
+          $ref: '#/definitions/services.Article'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/services.Article'
+      summary: Update an article
+      tags:
+      - articles
+  /articles:
+    get:
+      consumes:
+      - application/json
+      description: Get details of all articles
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/services.Article'
+            type: array
+      summary: Get all articles
+      tags:
+      - articles
+swagger: "2.0"

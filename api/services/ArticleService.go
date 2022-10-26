@@ -13,6 +13,22 @@ import (
 	"github.com/gorilla/mux"
 )
 
+// Article represents the model for an article
+type Article struct {
+	Id      int64  `json:"Id" example: "1"`
+	Title   string `json:"Title" example: "Title 1"`
+	Desc    string `json:"desc" example: "Description 1"`
+	Context string `json:"context" example: "Content 1"`
+}
+
+// GetAllArticles godoc
+// @Summary Get all articles
+// @Description Get details of all articles
+// @Tags articles
+// @Accept  json
+// @Produce  json
+// @Success 200 {array} Article
+// @Router /articles [get]
 func GetAllArticles(w http.ResponseWriter, r *http.Request) {
 	db, err := config.GetMySQLDB()
 
@@ -52,6 +68,15 @@ func GetAllArticles(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// GetSingleArticle godoc
+// @Summary Get Single Article
+// @Description Get single article with the input paylod
+// @Tags articles
+// @Accept  json
+// @Produce  json
+// @Param article body Article true "Update article"
+// @Success 200 {object} Article
+// @Router /article/{id} [get]
 func GetSingleArticle(w http.ResponseWriter, r *http.Request) {
 	db, err := config.GetMySQLDB()
 	vars := mux.Vars(r)
@@ -75,6 +100,15 @@ func GetSingleArticle(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 }
 
+// CreateArticle godoc
+// @Summary Create a new article
+// @Description Create a new article with the input paylod
+// @Tags articles
+// @Accept  json
+// @Produce  json
+// @Param article body Article true "Create article"
+// @Success 200 {object} Article
+// @Router /article [post]
 func CreateNewArticle(w http.ResponseWriter, r *http.Request) {
 	db, _ := config.GetMySQLDB()
 	var article2 entities.Article
@@ -106,6 +140,15 @@ func CreateNewArticle(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// UpdateArticle godoc
+// @Summary Update an article
+// @Description Update an article with the input paylod
+// @Tags articles
+// @Accept  json
+// @Produce  json
+// @Param article body Article true "Update article"
+// @Success 200 {object} Article
+// @Router /article/{id} [put]
 func UpdateArticle(w http.ResponseWriter, r *http.Request) {
 	db, _ := config.GetMySQLDB()
 	vars := mux.Vars(r)
@@ -145,6 +188,15 @@ func UpdateArticle(w http.ResponseWriter, r *http.Request) {
 
 }
 
+// DeleteArticle godoc
+// @Summary Delete an article
+// @Description Delete an article with the input paylod
+// @Tags articles
+// @Accept  json
+// @Produce  json
+// @Param article body Article true "Delete article"
+// @Success 200 {object} Article
+// @Router /article/{id} [delete]
 func DeleteArticle(w http.ResponseWriter, r *http.Request) {
 	db, _ := config.GetMySQLDB()
 	vars := mux.Vars(r)
