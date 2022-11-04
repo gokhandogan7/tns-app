@@ -37,12 +37,34 @@ func HandleRequests() {
 
 	myRouter := mux.NewRouter().StrictSlash(true)
 	myRouter.HandleFunc("/", homePage)
-	myRouter.HandleFunc("/articles", services.GetAllArticles).Methods(http.MethodGet)
-	myRouter.HandleFunc("/article/{id}", services.GetSingleArticle).Methods(http.MethodGet)
-	myRouter.HandleFunc("/article", services.CreateNewArticle).Methods(http.MethodPost)
-	myRouter.HandleFunc("/article/{id}", services.DeleteArticle).Methods(http.MethodDelete)
-	myRouter.HandleFunc("/article/{id}", services.UpdateArticle).Methods(http.MethodPut)
 
+	//Article Routes
+	myRouter.HandleFunc("/fullarticles", services.GetAllFullArticles).Methods(http.MethodGet)                          // All Articles
+	myRouter.HandleFunc("/fullarticles/{id}", services.GetUsersAllFullArticles).Methods(http.MethodGet)                // A Users's All Articles
+	myRouter.HandleFunc("/fullarticles/{user_id}/{article_id}", services.GetSingleFullArticle).Methods(http.MethodGet) // A User's Single Article
+
+	//Author Routes
+	myRouter.HandleFunc("/author", services.CreateNewAuthor).Methods(http.MethodPost)
+	myRouter.HandleFunc("/authors", services.GetAllAuthors).Methods(http.MethodGet)
+	myRouter.HandleFunc("/author/{id}", services.GetSingleAuthor).Methods(http.MethodGet)
+	myRouter.HandleFunc("/author/{id}", services.UpdateAuthor).Methods(http.MethodPut)
+	myRouter.HandleFunc("/author/{id}", services.DeleteAuthor).Methods(http.MethodDelete)
+
+	//Highlight Routes
+	myRouter.HandleFunc("/highlights", services.GetAllHighlights).Methods(http.MethodGet)
+	myRouter.HandleFunc("/highlight", services.CreateNewHighlight).Methods(http.MethodPost)
+	myRouter.HandleFunc("/highlight/{id}", services.GetSingleHighlight).Methods(http.MethodGet)
+	myRouter.HandleFunc("/highlight/{id}", services.UpdateHighlight).Methods(http.MethodPut)
+	myRouter.HandleFunc("/highlight/{id}", services.DeleteHighlight).Methods(http.MethodDelete)
+
+	//Content Routes
+	myRouter.HandleFunc("/content", services.CreateNewContent).Methods(http.MethodPost)
+	myRouter.HandleFunc("/contents", services.GetAllContents).Methods(http.MethodGet)
+	myRouter.HandleFunc("/content/{id}", services.GetSingleContent).Methods(http.MethodGet)
+	myRouter.HandleFunc("/content/{id}", services.UpdateContent).Methods(http.MethodPut)
+	myRouter.HandleFunc("/content/{id}", services.DeleteContent).Methods(http.MethodDelete)
+
+	//CORS
 	headersOk := handlers.AllowedHeaders([]string{"X-Requested-With"})
 	originsOk := handlers.AllowedOrigins([]string{"*"})
 	methodsOk := handlers.AllowedMethods([]string{"GET", "HEAD", "POST", "PUT", "OPTIONS", "DELETE"})

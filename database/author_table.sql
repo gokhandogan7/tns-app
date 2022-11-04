@@ -1,4 +1,3 @@
-
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: denemdb
@@ -17,34 +16,28 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `articless`
+-- Table structure for table `author`
 --
 
-DROP TABLE IF EXISTS `articless`;
+DROP TABLE IF EXISTS `author`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `articless` (
+CREATE TABLE `author` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(50) DEFAULT NULL,
-  `description` varchar(50) DEFAULT NULL,
-  `content_id` int NOT NULL,
-  `author_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `content_id` (`content_id`),
-  KEY `author_id` (`author_id`),
-  CONSTRAINT `articless_ibfk_1` FOREIGN KEY (`content_id`) REFERENCES `content` (`id`),
-  CONSTRAINT `articless_ibfk_2` FOREIGN KEY (`author_id`) REFERENCES `author` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `name` varchar(50) DEFAULT NULL,
+  `email` varchar(150) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `articless`
+-- Dumping data for table `author`
 --
 
-LOCK TABLES `articless` WRITE;
-/*!40000 ALTER TABLE `articless` DISABLE KEYS */;
-INSERT INTO `articless` VALUES (7,'Title1','new table',1,1),(8,'Title2','new table',2,1),(9,'Title3','new table',3,2),(10,'Title4','new table',4,2);
-/*!40000 ALTER TABLE `articless` ENABLE KEYS */;
+LOCK TABLES `author` WRITE;
+/*!40000 ALTER TABLE `author` DISABLE KEYS */;
+INSERT INTO `author` VALUES (1,'John','j@Doe.com'),(2,'Mary','m@Jane.com');
+/*!40000 ALTER TABLE `author` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

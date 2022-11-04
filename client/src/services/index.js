@@ -3,7 +3,7 @@ import { errorMapping } from "./errorMessages";
 
 export const getArticles = async (searchKey) => {
  
-  const url = `${BASE_URL}/articles?search=${searchKey}`;
+  const url = `${BASE_URL}/fullarticles?search=${searchKey}`;
   const response = await fetch(url);
   if (response.ok) {
     return response.json();

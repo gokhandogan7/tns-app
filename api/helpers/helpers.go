@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func IsSearched(article entities.Article, searchKey string) bool {
+func IsSearched(article entities.FullArticle, searchKey string) bool {
 
 	a := strings.ReplaceAll(article.Title, " ", "")
 	s := strings.ReplaceAll(searchKey, " ", "")
