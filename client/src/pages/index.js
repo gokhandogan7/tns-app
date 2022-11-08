@@ -1,2 +1,5 @@
 export {DetailPage} from './DetailPage/DetailPage'
 export {HomePage} from './HomePage/HomePage'
+export {AuthorPage} from './AuthorPage/AuthorPage'
+export {ContentPage} from './ContentPage/ContentPage'
+export {HighlightPage} from './HighlightPage/HighlightPage'
