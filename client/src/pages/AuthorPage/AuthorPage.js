@@ -10,6 +10,7 @@ export const AuthorPage = () => {
   const [value, setValue] = useState("");
   const debouncedValue = useDebounce(value, 700);
   const [authors] = useApi(services.getAllAuthors, [], debouncedValue);
+
   const handleChange = (event) => {
     setValue(event.target.value);
   };
@@ -19,16 +20,17 @@ export const AuthorPage = () => {
     // 👇️ navigate to /contacts
     navigate("/fullarticles");
   };
+
   return (
     <>
       <div style={{ textAlign: "center" }}>
       <h1 style={{ textAlign: "center" }}>List of Author</h1>
         <SearchBox handleChange={handleChange} value={value} />
         <button className="buttonA buttonAA" onClick={navigateToHome}>Go Back Articles Page</button>
-        {authors.map((author, index) => (
+        {authors.map((author, index) => ( 
           <div data-cy="article" className="container" key={index}>
             <div className="itemContainer">
-              <p data-cy="name" className="name">
+              <p  data-cy="name" className="name">
                 {author.Name}
               </p>
               <p data-cy="email" className="email">

@@ -12,17 +12,6 @@ export const getArticles = async (searchKey) => {
   throw new Error(message);
 };
 
-export const getUsersArticles = async (author_id, content_id) => {
- 
-  const url = `${BASE_URL}/fullarticles/${author_id}/${content_id}`;
-  const response = await fetch(url);
-  if (response.ok) {
-    return response.json();
-  }
-  const message = errorMapping[response?.status] ?? errorMapping.default;
-  throw new Error(message);
-};
-
 export const getAllAuthors = async (searchKey) => {
  
   const url = `${BASE_URL}/authors?search=${searchKey}`;
@@ -61,7 +50,6 @@ export const getAllHighlights = async (searchKey) => {
 
 export const services = {
   getArticles,
-  getUsersArticles,
   getAllAuthors,
   getAllContents,
   getAllHighlights

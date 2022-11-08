@@ -32,8 +32,6 @@ function ItemList() {
   const [value, setValue] = useState("");
   const debouncedValue = useDebounce(value, 700);
   const [state] = useApi(services.getArticles, [],debouncedValue);
-  const [articles] = useApi(services.getUsersArticles, [], 1, 2);
-  console.log(articles)
   const handleChange = (event) => {
     setValue(event.target.value);
   };
