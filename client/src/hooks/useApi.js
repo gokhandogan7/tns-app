@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import { useErrorHandler } from "react-error-boundary";
 
-export const useApi = (callBack, initial, searchKey) => {
-  console.log(searchKey)
+export const useApi = (callBack, initial, ...args) => {
   const [state, setState] = useState(initial);
   const handleError = useErrorHandler();
 
   const fetchData = async () => {
     try {
-      const res = await callBack(searchKey);
+      const res = await callBack(...args);
       setState(res);
     } catch (error) {
         handleError(error);
@@ -17,7 +16,7 @@ export const useApi = (callBack, initial, searchKey) => {
 
   useEffect(() => {
     fetchData();
-  }, [searchKey]);
+  }, [JSON.stringify(args)]);
 
-  return {state};
+  return [state];
 };

@@ -15,7 +15,7 @@ export const HomePage = () => {
       </div>
 
       <div className="linkContainer">
-        <a data-cy="link" className="link" href="/details">
+        <a data-cy="link" className="link" href="/fullarticles">
           Details
         </a>
       </div>

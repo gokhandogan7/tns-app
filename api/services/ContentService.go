@@ -32,7 +32,20 @@ func GetAllContents(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			fmt.Println(err)
 		}
-		json.NewEncoder(w).Encode(emptyContentList)
+		searchedContents := []entities.Content{}
+		searchKey := r.URL.Query().Get("search")
+		fmt.Println(searchKey)
+		Contents := emptyContentList
+
+		for _, content := range Contents {
+			if helpers.IsSearchedContent(content, searchKey) {
+
+				searchedContents = append(searchedContents, content)
+
+			}
+		}
+
+		json.NewEncoder(w).Encode(searchedContents)
 		if r.URL.Path != "/contents" {
 			helpers.ErrorHandler(w, r, http.StatusNotFound)
 			return
