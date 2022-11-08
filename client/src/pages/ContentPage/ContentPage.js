@@ -4,10 +4,12 @@ import { services } from "../../services";
 import SearchBox from "../../components/ui/SearchBox";
 import { useNavigate } from "react-router-dom";
 import "./contentpage.css"
+import useDebounce from "../../hooks/useDebounce";
 
 export const ContentPage = () => {
   const [value, setValue] = useState("");
-  const [contents] = useApi(services.getAllContents, [], value);
+  const debouncedValue = useDebounce(value, 700);
+  const [contents] = useApi(services.getAllContents, [], debouncedValue);
   const handleChange = (event) => {
     setValue(event.target.value);
   };

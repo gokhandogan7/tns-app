@@ -4,10 +4,12 @@ import { services } from "../../services";
 import SearchBox from "../../components/ui/SearchBox";
 import { useNavigate } from "react-router-dom";
 import "./highlightpage.css"
+import useDebounce from "../../hooks/useDebounce";
 
 export const HighlightPage = () => {
   const [value, setValue] = useState("");
-  const [highlights] = useApi(services.getAllHighlights, [], value);
+  const debouncedValue = useDebounce(value, 700);
+  const [highlights] = useApi(services.getAllHighlights, [], debouncedValue);
   const handleChange = (event) => {
     setValue(event.target.value);
   };

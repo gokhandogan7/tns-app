@@ -4,10 +4,12 @@ import { services } from "../../services";
 import SearchBox from "../../components/ui/SearchBox";
 import { useNavigate } from "react-router-dom";
 import "./authorpage.css"
+import useDebounce from "../../hooks/useDebounce";
 
 export const AuthorPage = () => {
   const [value, setValue] = useState("");
-  const [authors] = useApi(services.getAllAuthors, [], value);
+  const debouncedValue = useDebounce(value, 700);
+  const [authors] = useApi(services.getAllAuthors, [], debouncedValue);
   const handleChange = (event) => {
     setValue(event.target.value);
   };
