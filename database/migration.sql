@@ -28,7 +28,7 @@ CREATE TABLE `author` (
   `email` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_name_email` (`name`,`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,7 +50,8 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-08 15:31:58
+-- Dump completed on 2022-11-09 12:50:45
+
 
 
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
@@ -80,9 +81,9 @@ DROP TABLE IF EXISTS `content`;
 CREATE TABLE `content` (
   `id` int NOT NULL AUTO_INCREMENT,
   `text` varchar(255) DEFAULT NULL,
-  `image` blob,
+  `image` longblob,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,7 +92,7 @@ CREATE TABLE `content` (
 
 LOCK TABLES `content` WRITE;
 /*!40000 ALTER TABLE `content` DISABLE KEYS */;
-INSERT INTO `content` VALUES (1,'jack`s content text here',_binary 'jackimage_jack.com'),(2,'mack`s content text here',_binary 'mackimage_mack.com');
+INSERT INTO `content` VALUES (1,'nice view sea side',_binary 'https://i.picsum.photos/id/13/2500/1667.jpg?hmac=SoX9UoHhN8HyklRA4A3vcCWJMVtiBXUg0W4ljWTor7s'),(2,'stones near by sea',_binary 'https://i.picsum.photos/id/14/2500/1667.jpg?hmac=ssQyTcZRRumHXVbQAVlXTx-MGBxm6NHWD3SryQ48G-o'),(3,'magic coutryside',_binary 'https://i.picsum.photos/id/18/2500/1667.jpg?hmac=JR0Z_jRs9rssQHZJ4b7xKF82kOj8-4Ackq75D_9Wmz8'),(4,'discover the world, travel',_binary 'https://i.picsum.photos/id/26/4209/2769.jpg?hmac=vcInmowFvPCyKGtV7Vfh7zWcA_Z0kStrPDW3ppP0iGI');
 /*!40000 ALTER TABLE `content` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -104,8 +105,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-08 15:31:58
-
+-- Dump completed on 2022-11-09 12:50:45
 
 
 
@@ -128,13 +128,13 @@ UNLOCK TABLES;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `articless`
+-- Table structure for table `articles`
 --
 
-DROP TABLE IF EXISTS `articless`;
+DROP TABLE IF EXISTS `articles`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `articless` (
+CREATE TABLE `articles` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(155) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
@@ -143,19 +143,19 @@ CREATE TABLE `articless` (
   PRIMARY KEY (`id`),
   KEY `content_id` (`content_id`),
   KEY `author_id` (`author_id`),
-  CONSTRAINT `articless_ibfk_1` FOREIGN KEY (`content_id`) REFERENCES `content` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `articless_ibfk_2` FOREIGN KEY (`author_id`) REFERENCES `author` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `articles_ibfk_1` FOREIGN KEY (`content_id`) REFERENCES `content` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  CONSTRAINT `articles_ibfk_2` FOREIGN KEY (`author_id`) REFERENCES `author` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `articless`
+-- Dumping data for table `articles`
 --
 
-LOCK TABLES `articless` WRITE;
-/*!40000 ALTER TABLE `articless` DISABLE KEYS */;
-INSERT INTO `articless` VALUES (1,'jack`s title','jack is creating new articlethis is description',1,1),(2,'mack`s title','mack is creating new articlethis is description',2,2);
-/*!40000 ALTER TABLE `articless` ENABLE KEYS */;
+LOCK TABLES `articles` WRITE;
+/*!40000 ALTER TABLE `articles` DISABLE KEYS */;
+INSERT INTO `articles` VALUES (1,'Jack` holiday','jack is creating new article thhis is description',1,1),(2,'Mack`s stones','mack is creating new article this is description',2,2),(3,'Jack in countryside','jack is creating new article thhis is description',3,1),(4,'Discover Mack','jack is creating new article thhis is description',4,2);
+/*!40000 ALTER TABLE `articles` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -167,9 +167,7 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-08 15:31:58
-
-
+-- Dump completed on 2022-11-09 12:50:45
 
 
 
@@ -205,8 +203,8 @@ CREATE TABLE `highlight` (
   `date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `uk_article_id` (`article_id`),
-  CONSTRAINT `highlight_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `articless` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  CONSTRAINT `highlight_ibfk_1` FOREIGN KEY (`article_id`) REFERENCES `articles` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +213,7 @@ CREATE TABLE `highlight` (
 
 LOCK TABLES `highlight` WRITE;
 /*!40000 ALTER TABLE `highlight` DISABLE KEYS */;
-INSERT INTO `highlight` VALUES (1,1,'this is jack`s 1.contents highlight','2022-11-07 15:38:35'),(2,2,'this is jack`s 2.contents highlight','2022-11-07 15:38:35');
+INSERT INTO `highlight` VALUES (1,1,'this is jack`s 1.contents highlight','2022-11-09 11:32:13'),(2,2,'this is mack`s 1.contents highlight','2022-11-09 11:32:13'),(3,3,'this is jack`s 2.contents highlight','2022-11-09 11:32:13'),(4,4,'this is jack`s 2.contents highlight','2022-11-09 11:32:13');
 /*!40000 ALTER TABLE `highlight` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -228,4 +226,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-08 15:31:58
+-- Dump completed on 2022-11-09 12:50:45

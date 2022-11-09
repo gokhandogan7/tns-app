@@ -21,7 +21,7 @@ func TestIsSearched(t *testing.T) {
 		Date:       "Date",
 	}
 
-	result := IsSearched(TestArticle, "searchkey")
+	result := RefactoredIsSearched(TestArticle.Title, "searchkey")
 
 	if result != true {
 		t.Errorf("handler returned wrong status code: got %v want %v", result, true)

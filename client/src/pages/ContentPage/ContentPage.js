@@ -20,21 +20,20 @@ export const ContentPage = () => {
     // 👇️ navigate to /contacts
     navigate("/fullarticles");
   };
+  console.log(contents)
   return (
     <>
       <div style={{ textAlign: "center" }}>
         <h1 style={{ textAlign: "center" }}>List of Content</h1>
         <SearchBox handleChange={handleChange} value={value} />
-        <button className="button button3" onClick={navigateToHome}>Go Back Articles Page</button>
+        <button className="buttonC buttonCC" onClick={navigateToHome}>Go Back Articles Page</button>
         {contents.map((content, index) => (
           <div data-cy="content" className="container" key={index}>
             <div className="itemContainer">
               <p data-cy="text" className="text">
                 {content.Text}
               </p>
-              <p data-cy="image" className="image">
-                {content.Image}
-              </p>
+              <img src={content.Image} style={{width:400, height:300}}/>
             </div>
           </div>
         ))}

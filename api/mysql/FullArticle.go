@@ -12,21 +12,21 @@ type FullArticleModel struct {
 
 func (fullArticleModel FullArticleModel) FindAll() ([]entities.FullArticle, error) {
 	fmt.Println("calisiyor mu ful article")
-	rows, err := fullArticleModel.Db.Query(`select 
-	articless.id, articless.title, articless.description, articless.author_id, articless.content_id, 
+	rows, err := fullArticleModel.Db.Query(`SELECT 
+	articles.id, articles.title, articles.description, articles.author_id, articles.content_id, 
 	author.name, author.email, 
 	content.text, content.image, 
 	highlight.short_text, highlight.date 
-	from articless 
+	from articles 
 	inner join author 
 	inner join content 
 	inner join highlight
 	on 
-	articless.author_id = author.id 
+	articles.author_id = author.id 
 	and
-	articless.content_id=content.id
+	articles.content_id=content.id
 	and 
-	articless.id = highlight.article_id;`)
+	articles.id = highlight.article_id;`)
 
 	if err != nil {
 		return nil, err
@@ -58,22 +58,22 @@ func (fullArticleModel FullArticleModel) FindAll() ([]entities.FullArticle, erro
 }
 
 func (fullArticleModel FullArticleModel) FindUsersAll(id int64) ([]entities.FullArticle, error) {
-	rows, err := fullArticleModel.Db.Query(`select 
-	articless.id, articless.title, articless.description, articless.author_id, articless.content_id, 
-	author.name, author.email, 
-	content.text, content.image, 
-	highlight.short_text, highlight.date 
-	from articless 
-	inner join author 
-	inner join content 
-	inner join highlight
-	on 
-	articless.author_id = author.id 
-	and
-	articless.content_id=content.id
-	and 
-	articless.id = highlight.article_id
-	where author_id=?;`, id)
+	rows, err := fullArticleModel.Db.Query(`SELECT
+	articles.id, articles.title, articles.description, articles.author_id, articles.content_id,
+	author.name, author.email,
+	content.text, content.image,
+	highlight.short_text, highlight.date
+	FROM articles
+	INNER JOIN author
+	INNER JOIN content
+	INNER JOIN highlight
+	ON
+	articles.author_id = author.id
+	AND
+	articles.content_id=content.id
+	AND
+	articles.id = highlight.article_id
+	WHERE author_id=?;`, id)
 
 	if err != nil {
 		return nil, err
@@ -106,22 +106,22 @@ func (fullArticleModel FullArticleModel) FindUsersAll(id int64) ([]entities.Full
 
 func (fullArticleModel FullArticleModel) Find(user_id int64, article_id int64) (entities.FullArticle, error) {
 
-	rows, err := fullArticleModel.Db.Query(`select
-	articless.id, articless.title, articless.description, articless.author_id, articless.content_id,
+	rows, err := fullArticleModel.Db.Query(`SELECT
+	articles.id, articles.title, articles.description, articles.author_id, articles.content_id,
 	author.name, author.email,
 	content.text, content.image,
 	highlight.short_text, highlight.date
-	from articless
-	inner join author
-	inner join content
-	inner join highlight
-	on
-	articless.author_id = author.id
-	and
-	articless.content_id=content.id
-	and
-	articless.id = highlight.article_id
-	where author_id=? and articless.id=?;`, user_id, article_id)
+	FROM articles
+	INNER JOIN author
+	INNER JOIN content
+	INNER JOIN highlight
+	ON
+	articles.author_id = author.id
+	AND
+	articles.content_id=content.id
+	AND
+	articles.id = highlight.article_id
+	WHERE author_id=? AND articles.id=?;`, user_id, article_id)
 	if err != nil {
 		return entities.FullArticle{}, err
 	} else {

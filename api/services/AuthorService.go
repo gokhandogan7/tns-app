@@ -38,7 +38,7 @@ func GetAllAuthors(w http.ResponseWriter, r *http.Request) {
 		Authors := emptyAuthorList
 
 		for _, author := range Authors {
-			if helpers.IsSearchedAuthor(author, searchKey) {
+			if helpers.RefactoredIsSearched(author.Name, searchKey) {
 
 				searchedAuthors = append(searchedAuthors, author)
 

@@ -39,7 +39,7 @@ func GetAllHighlights(w http.ResponseWriter, r *http.Request) {
 		Highlights := emptyHighlightList
 
 		for _, highlight := range Highlights {
-			if helpers.IsSearchedHighlight(highlight, searchKey) {
+			if helpers.RefactoredIsSearched(highlight.Short_Text, searchKey) {
 
 				searchedHighlights = append(searchedHighlights, highlight)
 

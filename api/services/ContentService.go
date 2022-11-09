@@ -38,7 +38,7 @@ func GetAllContents(w http.ResponseWriter, r *http.Request) {
 		Contents := emptyContentList
 
 		for _, content := range Contents {
-			if helpers.IsSearchedContent(content, searchKey) {
+			if helpers.RefactoredIsSearched(content.Text, searchKey) {
 
 				searchedContents = append(searchedContents, content)
 

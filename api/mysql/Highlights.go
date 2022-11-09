@@ -12,7 +12,7 @@ type HighlightModel struct {
 
 func (highlightModel HighlightModel) Delete(id int64) (int64, error) {
 
-	result, err := highlightModel.Db.Exec("DELETE from highlight where id=?", id)
+	result, err := highlightModel.Db.Exec("DELETE FROM highlight WHERE id=?", id)
 	if err != nil {
 		return 0, err
 	} else {
@@ -23,7 +23,7 @@ func (highlightModel HighlightModel) Delete(id int64) (int64, error) {
 
 func (highlightModel HighlightModel) Update(highlight entities.Highlight) (int64, error) {
 
-	result, err := highlightModel.Db.Exec("UPDATE highlight set article_id=?, short_text=? where id=?", highlight.Article_Id, highlight.Short_Text, highlight.Id)
+	result, err := highlightModel.Db.Exec("UPDATE highlight SET article_id=?, short_text=? WHERE id=?", highlight.Article_Id, highlight.Short_Text, highlight.Id)
 	if err != nil {
 		return 0, err
 	} else {
@@ -46,7 +46,7 @@ func (highlightModel HighlightModel) Create(highlight *entities.Highlight) error
 
 func (highlightModel HighlightModel) Find(id int64) (entities.Highlight, error) {
 
-	rows, err := highlightModel.Db.Query("SELECT * FROM `highlight` where id=?", id)
+	rows, err := highlightModel.Db.Query("SELECT * FROM `highlight` WHERE id=?", id)
 	fmt.Println(entities.Highlight{}.Id)
 	if err != nil {
 		return entities.Highlight{}, err

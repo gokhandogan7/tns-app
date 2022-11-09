@@ -46,7 +46,7 @@ func GetAllFullArticles(w http.ResponseWriter, r *http.Request) {
 		Articles := emptyFullArticleList
 
 		for _, article := range Articles {
-			if helpers.IsSearched(article, searchKey) {
+			if helpers.RefactoredIsSearched(article.Title, searchKey) {
 
 				searchedFullArticles = append(searchedFullArticles, article)
 

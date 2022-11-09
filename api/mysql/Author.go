@@ -12,7 +12,7 @@ type AuthorModel struct {
 
 func (authorModel AuthorModel) Delete(id int64) (int64, error) {
 
-	result, err := authorModel.Db.Exec("DELETE from author where id=?", id)
+	result, err := authorModel.Db.Exec("DELETE FROM author WHERE id=?", id)
 	if err != nil {
 		return 0, err
 	} else {
@@ -23,7 +23,7 @@ func (authorModel AuthorModel) Delete(id int64) (int64, error) {
 
 func (authorModel AuthorModel) Update(author entities.Author) (int64, error) {
 
-	result, err := authorModel.Db.Exec("UPDATE author set name=?, email=?, where id=?", author.Name, author.Email, author.Id)
+	result, err := authorModel.Db.Exec("UPDATE author SET name=?, email=?, WHERE id=?", author.Name, author.Email, author.Id)
 	if err != nil {
 		return 0, err
 	} else {
@@ -46,7 +46,7 @@ func (authorModel AuthorModel) Create(author *entities.Author) error {
 
 func (authorModel AuthorModel) Find(id int64) (entities.Author, error) {
 
-	rows, err := authorModel.Db.Query("SELECT * FROM `author` where id=?", id)
+	rows, err := authorModel.Db.Query("SELECT * FROM `author` WHERE id=?", id)
 	fmt.Println(entities.Author{}.Id)
 	if err != nil {
 		return entities.Author{}, err

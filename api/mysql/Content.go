@@ -12,7 +12,7 @@ type ContentModel struct {
 
 func (contentModel ContentModel) Delete(id int64) (int64, error) {
 
-	result, err := contentModel.Db.Exec("DELETE from content where id=?", id)
+	result, err := contentModel.Db.Exec("DELETE from content WHERE id=?", id)
 	if err != nil {
 		return 0, err
 	} else {
@@ -23,7 +23,7 @@ func (contentModel ContentModel) Delete(id int64) (int64, error) {
 
 func (contentModel ContentModel) Update(content entities.Content) (int64, error) {
 
-	result, err := contentModel.Db.Exec("UPDATE content set text=?, image=? where id=?", content.Text, content.Image, content.Id)
+	result, err := contentModel.Db.Exec("UPDATE content set text=?, image=? WHERE id=?", content.Text, content.Image, content.Id)
 	if err != nil {
 		return 0, err
 	} else {
@@ -46,7 +46,7 @@ func (contentModel ContentModel) Create(content *entities.Content) error {
 
 func (contentModel ContentModel) Find(id int64) (entities.Content, error) {
 
-	rows, err := contentModel.Db.Query("SELECT * FROM `content` where id=?", id)
+	rows, err := contentModel.Db.Query("SELECT * FROM `content` WHERE id=?", id)
 	fmt.Println(entities.Content{}.Id)
 	if err != nil {
 		return entities.Content{}, err
