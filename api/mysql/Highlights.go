@@ -3,7 +3,6 @@ package mysqloperations
 import (
 	"api/entities"
 	"database/sql"
-	"fmt"
 )
 
 type HighlightModel struct {
@@ -47,7 +46,6 @@ func (highlightModel HighlightModel) Create(highlight *entities.Highlight) error
 func (highlightModel HighlightModel) Find(id int64) (entities.Highlight, error) {
 
 	rows, err := highlightModel.Db.Query("SELECT * FROM `highlight` WHERE id=?", id)
-	fmt.Println(entities.Highlight{}.Id)
 	if err != nil {
 		return entities.Highlight{}, err
 	} else {

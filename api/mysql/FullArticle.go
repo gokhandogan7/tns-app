@@ -3,7 +3,6 @@ package mysqloperations
 import (
 	"api/entities"
 	"database/sql"
-	"fmt"
 )
 
 type FullArticleModel struct {
@@ -11,7 +10,6 @@ type FullArticleModel struct {
 }
 
 func (fullArticleModel FullArticleModel) FindAll() ([]entities.FullArticle, error) {
-	fmt.Println("calisiyor mu ful article")
 	rows, err := fullArticleModel.Db.Query(`SELECT 
 	articles.id, articles.title, articles.description, articles.author_id, articles.content_id, 
 	author.name, author.email, 

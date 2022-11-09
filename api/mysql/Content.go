@@ -3,7 +3,6 @@ package mysqloperations
 import (
 	"api/entities"
 	"database/sql"
-	"fmt"
 )
 
 type ContentModel struct {
@@ -47,7 +46,6 @@ func (contentModel ContentModel) Create(content *entities.Content) error {
 func (contentModel ContentModel) Find(id int64) (entities.Content, error) {
 
 	rows, err := contentModel.Db.Query("SELECT * FROM `content` WHERE id=?", id)
-	fmt.Println(entities.Content{}.Id)
 	if err != nil {
 		return entities.Content{}, err
 	} else {

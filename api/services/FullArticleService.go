@@ -84,7 +84,6 @@ func GetUsersAllFullArticles(w http.ResponseWriter, r *http.Request) {
 		emptyFullArticleList := []entities.FullArticle{}
 		fullArticles, err := fullArticleModel.FindUsersAll(intKey)
 		emptyFullArticleList = append(emptyFullArticleList, fullArticles...)
-		fmt.Println(emptyFullArticleList)
 		if err != nil {
 			fmt.Println(err)
 		}
@@ -118,7 +117,6 @@ func GetSingleFullArticle(w http.ResponseWriter, r *http.Request) {
 		emptyFullArticleList := []entities.FullArticle{}
 		singleArticle, err := fullArticleModel.Find(intUser_id, intArticle_id)
 		singleFullArticleList := append(emptyFullArticleList, singleArticle)
-		fmt.Println(singleFullArticleList)
 		if err != nil {
 			fmt.Println(err)
 		}

@@ -34,7 +34,6 @@ func GetAllContents(w http.ResponseWriter, r *http.Request) {
 		}
 		searchedContents := []entities.Content{}
 		searchKey := r.URL.Query().Get("search")
-		fmt.Println(searchKey)
 		Contents := emptyContentList
 
 		for _, content := range Contents {
