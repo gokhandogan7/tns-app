@@ -26,7 +26,6 @@ func GetAllHighlights(w http.ResponseWriter, r *http.Request) {
 		}
 		emptyHighlightList := []entities.Highlight{}
 		highlights, err := highlightModel.FindAll()
-
 		emptyHighlightList = append(emptyHighlightList, highlights...)
 
 		if err != nil {
@@ -35,7 +34,6 @@ func GetAllHighlights(w http.ResponseWriter, r *http.Request) {
 
 		searchedHighlights := []entities.Highlight{}
 		searchKey := r.URL.Query().Get("search")
-		fmt.Println(searchKey)
 		Highlights := emptyHighlightList
 
 		for _, highlight := range Highlights {
@@ -45,7 +43,6 @@ func GetAllHighlights(w http.ResponseWriter, r *http.Request) {
 
 			}
 		}
-
 		json.NewEncoder(w).Encode(searchedHighlights)
 		if r.URL.Path != "/highlights" {
 			helpers.ErrorHandler(w, r, http.StatusNotFound)

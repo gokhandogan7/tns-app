@@ -3,7 +3,6 @@ package mysqloperations
 import (
 	"api/entities"
 	"database/sql"
-	"fmt"
 )
 
 type AuthorModel struct {
@@ -47,7 +46,6 @@ func (authorModel AuthorModel) Create(author *entities.Author) error {
 func (authorModel AuthorModel) Find(id int64) (entities.Author, error) {
 
 	rows, err := authorModel.Db.Query("SELECT * FROM `author` WHERE id=?", id)
-	fmt.Println(entities.Author{}.Id)
 	if err != nil {
 		return entities.Author{}, err
 	} else {

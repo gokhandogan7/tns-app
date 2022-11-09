@@ -34,7 +34,6 @@ func GetAllAuthors(w http.ResponseWriter, r *http.Request) {
 		}
 		searchedAuthors := []entities.Author{}
 		searchKey := r.URL.Query().Get("search")
-		fmt.Println(searchKey)
 		Authors := emptyAuthorList
 
 		for _, author := range Authors {
@@ -44,7 +43,6 @@ func GetAllAuthors(w http.ResponseWriter, r *http.Request) {
 
 			}
 		}
-		fmt.Println(searchedAuthors)
 		json.NewEncoder(w).Encode(searchedAuthors)
 		if r.URL.Path != "/authors" {
 			helpers.ErrorHandler(w, r, http.StatusNotFound)
