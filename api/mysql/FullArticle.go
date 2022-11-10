@@ -9,7 +9,8 @@ type FullArticleModel struct {
 	Db *sql.DB
 }
 
-func (fullArticleModel FullArticleModel) FindAll() ([]entities.FullArticle, error) {
+func (fullArticleModel FullArticleModel) FindAll(limit string) ([]entities.FullArticle, error) {
+
 	rows, err := fullArticleModel.Db.Query(`SELECT 
 	articles.id, articles.title, articles.description, articles.author_id, articles.content_id, 
 	author.name, author.email, 
@@ -24,7 +25,7 @@ func (fullArticleModel FullArticleModel) FindAll() ([]entities.FullArticle, erro
 	and
 	articles.content_id=content.id
 	and 
-	articles.id = highlight.article_id;`)
+	articles.id = highlight.article_id LIMIT ?;`, limit)
 
 	if err != nil {
 		return nil, err

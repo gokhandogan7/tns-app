@@ -71,7 +71,6 @@ func GetSingleAuthor(w http.ResponseWriter, r *http.Request) {
 		}
 		json.NewEncoder(w).Encode(singleAuthor)
 	}
-	defer db.Close()
 }
 
 func CreateNewAuthor(w http.ResponseWriter, r *http.Request) {
@@ -97,8 +96,6 @@ func CreateNewAuthor(w http.ResponseWriter, r *http.Request) {
 	}
 
 	entities.Authors = append(entities.Authors, author)
-
-	defer db.Close()
 
 }
 
@@ -136,7 +133,6 @@ func UpdateAuthor(w http.ResponseWriter, r *http.Request) {
 		entities.Authors = append(entities.Authors, author)
 
 	}
-	defer db.Close()
 
 }
 
@@ -164,6 +160,5 @@ func DeleteAuthor(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-	defer db.Close()
 
 }

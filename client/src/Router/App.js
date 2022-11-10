@@ -2,10 +2,10 @@
 /* eslint-disable react/react-in-jsx-scope */
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import { ContentPage, DetailPage, HighlightPage, HomePage} from "../pages";
+import { ContentPage, HighlightPage, HomePage, AuthorPage, ArticlePage} from "../pages";
 import { ErrorBoundary } from "react-error-boundary";
 import ErrorPage from "../components/ui/errorPage";
-import { AuthorPage } from "../pages/AuthorPage/AuthorPage";
+import {UserArticlePage } from "../pages/UsersArticlePage";
 function ErrorFallback({ error, resetErrorBoundary }) {
   return <ErrorPage error={error} reset={resetErrorBoundary} />;
 }
@@ -21,7 +21,8 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/fullarticles" element={<DetailPage />} />
+          <Route path="/fullarticles" element={<ArticlePage />} />
+          <Route path="/fullarticles/:at" element={<UserArticlePage />} />
           <Route path="/authors" element={<AuthorPage />} />
           <Route path="/contents" element={<ContentPage />} />
           <Route path="/highlights" element={<HighlightPage />} />

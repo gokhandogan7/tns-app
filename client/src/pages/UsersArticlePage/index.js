@@ -1,20 +1,16 @@
-/* eslint-disable no-unreachable */
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import "./item.css";
+import React from 'react'
+import { useParams } from 'react-router-dom'
+import { useApi } from '../../hooks/useApi';
+import { services } from '../../services';
 
-const Item = ({ items }) => {
-  const navigate = useNavigate();
+export const UserArticlePage = () => {
+    const params = useParams()
+    const [state] = useApi(services.getArticlesByUserId, [], params.at);
 
-  const navigateToAuthors = (val) => {
-    // 👇️ navigate to /contacts
-    navigate("/fullarticles/"+val);
-  };
-
-  return items
     
-    .map((item, index) => (
-      <div onClick={()=>navigateToAuthors(item.Id)} data-cy="article" className="container" key={index}>
+  return state
+  .map((item, index) => (
+      <div data-cy="article" className="container" key={index}>
         <div className="itemContainer">
           <p data-cy="title" className="title">{item.Title}</p>
           <p data-cy="description" className="description">{item.desc}</p>
@@ -26,7 +22,5 @@ const Item = ({ items }) => {
           
         </div>
       </div>
-    ));
-};
-
-export default Item;
+  ))
+}

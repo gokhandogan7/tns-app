@@ -33,7 +33,9 @@ func GetAllFullArticles(w http.ResponseWriter, r *http.Request) {
 			Db: db,
 		}
 		emptyFullArticleList := []entities.FullArticle{}
-		fullArticles, err := fullArticleModel.FindAll()
+		limit := r.URL.Query().Get("limit")
+		fmt.Println("--->", limit)
+		fullArticles, err := fullArticleModel.FindAll(limit)
 
 		emptyFullArticleList = append(emptyFullArticleList, fullArticles...)
 
@@ -89,7 +91,6 @@ func GetUsersAllFullArticles(w http.ResponseWriter, r *http.Request) {
 		}
 		json.NewEncoder(w).Encode(emptyFullArticleList)
 	}
-	defer db.Close()
 }
 
 // GetSingleArticle godoc
@@ -122,5 +123,4 @@ func GetSingleFullArticle(w http.ResponseWriter, r *http.Request) {
 		}
 		json.NewEncoder(w).Encode(singleFullArticleList)
 	}
-	defer db.Close()
 }
