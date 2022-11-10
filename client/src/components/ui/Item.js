@@ -8,7 +8,7 @@ const Item = ({ items }) => {
 
   const navigateToAuthors = (val) => {
     // 👇️ navigate to /contacts
-    navigate("/fullarticles/"+val);
+    navigate(`/fullarticles/${val}`);
   };
 
   return items

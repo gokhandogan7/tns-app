@@ -34,7 +34,6 @@ func GetAllFullArticles(w http.ResponseWriter, r *http.Request) {
 		}
 		emptyFullArticleList := []entities.FullArticle{}
 		limit := r.URL.Query().Get("limit")
-		fmt.Println("--->", limit)
 		fullArticles, err := fullArticleModel.FindAll(limit)
 
 		emptyFullArticleList = append(emptyFullArticleList, fullArticles...)
