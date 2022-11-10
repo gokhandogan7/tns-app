@@ -3,6 +3,7 @@ package mysqloperations
 import (
 	"api/entities"
 	"database/sql"
+	"fmt"
 )
 
 type FullArticleModel struct {
@@ -11,7 +12,11 @@ type FullArticleModel struct {
 
 func (fullArticleModel FullArticleModel) FindAll(limit string) ([]entities.FullArticle, error) {
 
-	rows, err := fullArticleModel.Db.Query(`SELECT 
+	if limit != "" {
+		limit = fmt.Sprintf(`LIMIT %s`, limit)
+	}
+
+	rows, err := fullArticleModel.Db.Query(fmt.Sprintf(`SELECT 
 	articles.id, articles.title, articles.description, articles.author_id, articles.content_id, 
 	author.name, author.email, 
 	content.text, content.image, 
@@ -25,7 +30,7 @@ func (fullArticleModel FullArticleModel) FindAll(limit string) ([]entities.FullA
 	and
 	articles.content_id=content.id
 	and 
-	articles.id = highlight.article_id LIMIT ?;`, limit)
+	articles.id = highlight.article_id %s;`, limit))
 
 	if err != nil {
 		return nil, err

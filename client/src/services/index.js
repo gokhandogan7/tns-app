@@ -49,7 +49,7 @@ export const getAllHighlights = async (searchKey) => {
 
 export const getArticlesByUserId = async (id) => {
  
-  const url = `${BASE_URL}/fullarticles/${id}`;
+  const url = `${BASE_URL}/fullarticles?user_id=${id}`;
   const response = await fetch(url);
   if (response.ok) {
     return response.json();

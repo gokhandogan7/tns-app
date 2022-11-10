@@ -22,7 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/fullarticles" element={<ArticlePage />} />
-          <Route path="/fullarticles/:at" element={<UserArticlePage />} />
+          <Route path="/fullarticles/:user_id" element={<UserArticlePage />} />
           <Route path="/authors" element={<AuthorPage />} />
           <Route path="/contents" element={<ContentPage />} />
           <Route path="/highlights" element={<HighlightPage />} />

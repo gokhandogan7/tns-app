@@ -47,13 +47,12 @@ export const ArticlePage = () => {
 
   return (
     <div data-cy="detail-page" style={{ textAlign: "center" }}>
-      <h1 style={{ textAlign: "center" }}>List of Articles</h1>
+      <h1 style={{ textAlign: "center"}}>List of Articles</h1>
       <SearchBox handleChange={searchHandleChange} value={value} />
 
-      <div style={{ width: 200, display: "table"}}>
+      <div style={{ width: 200, display: "table", margin:20}}>
         <div style={{ display: "table-cell", width: "100%" }}>
           <input
-            //onInput={"validity.valid||(value='');"}
             value={limit}
             onChange={limitHandleChange}
             style={{ width: "100%" }}
