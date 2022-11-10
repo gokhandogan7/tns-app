@@ -71,7 +71,6 @@ func GetSingleHighlight(w http.ResponseWriter, r *http.Request) {
 		}
 		json.NewEncoder(w).Encode(singleHighlight)
 	}
-	defer db.Close()
 }
 
 func CreateNewHighlight(w http.ResponseWriter, r *http.Request) {
@@ -97,8 +96,6 @@ func CreateNewHighlight(w http.ResponseWriter, r *http.Request) {
 	}
 
 	entities.Highlights = append(entities.Highlights, highlight)
-
-	defer db.Close()
 
 }
 
@@ -136,7 +133,6 @@ func UpdateHighlight(w http.ResponseWriter, r *http.Request) {
 		entities.Highlights = append(entities.Highlights, highlight)
 
 	}
-	defer db.Close()
 
 }
 
@@ -164,6 +160,5 @@ func DeleteHighlight(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-	defer db.Close()
 
 }

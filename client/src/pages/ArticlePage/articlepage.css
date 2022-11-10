@@ -34,3 +34,13 @@
     background-color: #a836f4;
     color: white;
   }
+
+
+.w { display: table; }
+.t {
+    display: table-cell;
+    width: 100%;
+}
+.tt {
+    width: 100%;
+}

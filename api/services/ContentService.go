@@ -72,7 +72,7 @@ func GetSingleContent(w http.ResponseWriter, r *http.Request) {
 		}
 		json.NewEncoder(w).Encode(singleContent)
 	}
-	defer db.Close()
+
 }
 
 func CreateNewContent(w http.ResponseWriter, r *http.Request) {
@@ -98,8 +98,6 @@ func CreateNewContent(w http.ResponseWriter, r *http.Request) {
 	}
 
 	entities.Contents = append(entities.Contents, content)
-
-	defer db.Close()
 
 }
 
@@ -137,7 +135,6 @@ func UpdateContent(w http.ResponseWriter, r *http.Request) {
 		entities.Contents = append(entities.Contents, content)
 
 	}
-	defer db.Close()
 
 }
 
@@ -165,6 +162,5 @@ func DeleteContent(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-	defer db.Close()
 
 }

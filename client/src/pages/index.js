@@ -1,4 +1,4 @@
-export {DetailPage} from './DetailPage/DetailPage'
+export {ArticlePage} from './ArticlePage/ArticlePage'
 export {HomePage} from './HomePage/HomePage'
 export {AuthorPage} from './AuthorPage/AuthorPage'
 export {ContentPage} from './ContentPage/ContentPage'
