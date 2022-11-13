@@ -16,8 +16,6 @@ import (
 func GetAllHighlights(w http.ResponseWriter, r *http.Request) {
 	db, err := config.GetMySQLDB()
 
-	helpers.EnableCors(&w)
-
 	if err != nil {
 		fmt.Println(err)
 	} else {

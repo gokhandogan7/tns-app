@@ -22,17 +22,17 @@ export const HighlightPage = () => {
   };
   return (
     <>
-      <div style={{ textAlign: "center" }}>
-        <h1 style={{ textAlign: "center" }}>List of Highlight</h1>
+      <div data-cy="highlight-page" style={{ textAlign: "center" }}>
+        <h1 data-cy="highlight-header" style={{ textAlign: "center" }}>List of Highlight</h1>
         <SearchBox handleChange={handleChange} value={value} />
-        <button className="buttonH buttonHH" onClick={navigateToHome}>Go Back Articles Page</button>
+        <button data-cy="H-goback-button" className="buttonH buttonHH" onClick={navigateToHome}>Go Back Articles Page</button>
         {highlights.map((highlight, index) => (
-          <div data-cy="highlight" className="container" key={index}>
+          <div data-cy="highlight-container" className="container" key={index}>
             <div className="itemContainer">
-              <p data-cy="text" className="text">
+              <p data-cy="short-text" className="text">
                 {highlight.Short_Text}
               </p>
-              <p data-cy="image" className="image">
+              <p data-cy="date" className="image">
                 {highlight.Date}
               </p>
             </div>

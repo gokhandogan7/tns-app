@@ -13,13 +13,8 @@ func RefactoredIsSearched(entry string, searchKey string) bool {
 	return strings.Contains(strings.ToLower(a), strings.ToLower(s))
 }
 
-func EnableCors(w *http.ResponseWriter) {
-	(*w).Header().Set("Access-Control-Allow-Origin", "*")
-}
-
 func ErrorHandler(w http.ResponseWriter, r *http.Request, status int) {
 
-	EnableCors(&w)
 	if status == http.StatusNotFound {
 		http.NotFound(w, r)
 	}
