@@ -23,12 +23,12 @@ export const AuthorPage = () => {
 
   return (
     <>
-      <div style={{ textAlign: "center" }}>
-      <h1 style={{ textAlign: "center" }}>List of Author</h1>
+      <div data-cy="author-page" style={{ textAlign: "center" }}>
+      <h1 data-cy="author-header" style={{ textAlign: "center" }}>List of Author</h1>
         <SearchBox handleChange={handleChange} value={value} />
-        <button className="buttonA buttonAA" onClick={navigateToHome}>Go Back Articles Page</button>
+        <button data-cy="A-goback-button" className="buttonA buttonAA" onClick={navigateToHome}>Go Back Articles Page</button>
         {authors.map((author, index) => ( 
-          <div data-cy="article" className="container" key={index}>
+          <div data-cy="author-container" className="container" key={index}>
             <div className="itemContainer">
               <p  data-cy="name" className="name">
                 {author.Name}

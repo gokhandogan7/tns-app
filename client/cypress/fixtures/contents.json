@@ -1,0 +1,26 @@
+{
+    "data": 
+    [
+        {
+            "Id": 1,
+            "Text": "nice view sea side",
+            "Image": "https://i.picsum.photos/id/13/2500/1667.jpg?hmac=SoX9UoHhN8HyklRA4A3vcCWJMVtiBXUg0W4ljWTor7s"
+        },
+        {
+            "Id": 2,
+            "Text": "stones near by sea",
+            "Image": "https://i.picsum.photos/id/14/2500/1667.jpg?hmac=ssQyTcZRRumHXVbQAVlXTx-MGBxm6NHWD3SryQ48G-o"
+        },
+        {
+            "Id": 3,
+            "Text": "magic coutryside",
+            "Image": "https://i.picsum.photos/id/18/2500/1667.jpg?hmac=JR0Z_jRs9rssQHZJ4b7xKF82kOj8-4Ackq75D_9Wmz8"
+        },
+        {
+            "Id": 4,
+            "Text": "discover the world, travel",
+            "Image": "https://i.picsum.photos/id/26/4209/2769.jpg?hmac=vcInmowFvPCyKGtV7Vfh7zWcA_Z0kStrPDW3ppP0iGI"
+        }
+    ]
+} 
+ 

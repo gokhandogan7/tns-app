@@ -43,16 +43,16 @@ export const ArticlePage = () => {
     if (event.target.value === "" || re.test(event.target.value)) {
       setLimit(event.target.value);
     }
-  };
+  };4454
 
   return (
     <div data-cy="detail-page" style={{ textAlign: "center" }}>
-      <h1 style={{ textAlign: "center"}}>List of Articles</h1>
+      <h1  data-cy="header" style={{ textAlign: "center"}}>List of Articles</h1>
       <SearchBox handleChange={searchHandleChange} value={value} />
-
-      <div style={{ width: 200, display: "table", margin:20}}>
+      <div data-cy="limit-container" style={{ width: 200, display: "table", margin:20}}>
         <div style={{ display: "table-cell", width: "100%" }}>
           <input
+          data-cy="limit-searchbox"
             value={limit}
             onChange={limitHandleChange}
             style={{ width: "100%" }}
@@ -61,22 +61,23 @@ export const ArticlePage = () => {
           />
         </div>
         <input
+        data-cy="limit-button"
           onClick={() => setAqLimit(limit)}
           style={{ width: "100%", marginLeft: 10 }}
           type="button"
           value="Bring"
         />
       </div>
-      <button className="buttonA buttonAA" onClick={navigateToAuthors}>
+      <button data-cy="author-button" className="buttonA buttonAA" onClick={navigateToAuthors}>
         Author
       </button>
-      <button className="button button3" onClick={navigateToContents}>
+      <button data-cy="content-button" className="button button3" onClick={navigateToContents}>
         Content
       </button>
-      <button className="buttonH buttonHH" onClick={navigateToHighlights}>
+      <button data-cy="highlight-button" className="buttonH buttonHH" onClick={navigateToHighlights}>
         Highlight
       </button>
-      <button className="buttonG buttonGG" onClick={navigateToHome}>
+      <button data-cy="gohome-button" className="buttonG buttonGG" onClick={navigateToHome}>
         Go Back To Home
       </button>
       <Item items={state} search={debouncedValue} />

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const SearchBox = (props) => {
   return (
-    <div data-cy="search-box">
+    <div data-cy="article-search-box">
       <input
         className="inputBox"
         placeholder="Search Items"

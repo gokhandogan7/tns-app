@@ -54,7 +54,6 @@ func ConnectMySQLDB() {
 
 	d, err := sql.Open(dbDriver, dbUser+":"+dbPass+"@tcp("+dbHost+":"+dbPort+")/"+dbName)
 
-	// }
 	limit := 15
 	// check that the database is reachable; try at least 3 times to connect
 	for i := 0; i <= limit; i++ {

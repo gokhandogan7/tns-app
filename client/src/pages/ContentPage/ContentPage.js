@@ -23,17 +23,17 @@ export const ContentPage = () => {
   console.log(contents)
   return (
     <>
-      <div style={{ textAlign: "center" }}>
-        <h1 style={{ textAlign: "center" }}>List of Content</h1>
+      <div data-cy="content-page"  style={{ textAlign: "center" }}>
+        <h1 data-cy="content-header" style={{ textAlign: "center" }}>List of Content</h1>
         <SearchBox handleChange={handleChange} value={value} />
-        <button className="buttonC buttonCC" onClick={navigateToHome}>Go Back Articles Page</button>
+        <button data-cy="C-goback-button" className="buttonC buttonCC" onClick={navigateToHome}>Go Back Articles Page</button>
         {contents.map((content, index) => (
-          <div data-cy="content" className="container" key={index}>
+          <div data-cy="content-container" className="container" key={index}>
             <div className="itemContainer">
               <p data-cy="text" className="text">
                 {content.Text}
               </p>
-              <img src={content.Image} style={{width:400, height:300}}/>
+              <img data-cy="image" src={content.Image} style={{width:400, height:300}}/>
             </div>
           </div>
         ))}

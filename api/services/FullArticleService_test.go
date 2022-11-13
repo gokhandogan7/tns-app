@@ -23,7 +23,7 @@ func TestGetAllFullArticles(t *testing.T) {
 
 }
 
-func TestGetSingleFullArticle(t *testing.T) {
+/* func TestGetSingleFullArticle(t *testing.T) {
 	req, err := http.NewRequest(http.MethodGet, "/fullarticles", nil)
 	if err != nil {
 		t.Fatal(err)
@@ -39,8 +39,8 @@ func TestGetSingleFullArticle(t *testing.T) {
 			status, http.StatusOK)
 	}
 
-	//expected := `[{"Id":0,"Title":"","desc":"","context":""}]`
-	/* var expected = entities.Article{
+	expected := `[{"Id":0,"Title":"","desc":"","context":""}]`
+	var expected = entities.Article{
 		Id:      0,
 		Title:   "",
 		Desc:    "",
@@ -50,6 +50,7 @@ func TestGetSingleFullArticle(t *testing.T) {
 	if rr.Body.String() != expected {
 		t.Errorf("handler returned unexpected body: got %v want %v",
 			rr.Body.String(), expected)
-	} */
+	}
 
 }
+*/
